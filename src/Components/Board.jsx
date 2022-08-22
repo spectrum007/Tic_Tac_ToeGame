@@ -1,22 +1,23 @@
 import React from "react";
+import Square from "./Square";
 
 function Board() {
   return (
     <div>
       <div>
-        <button> Hello </button>
-        <button> Hello </button>
-        <button> Hello </button>
+        <Square value={0} />
+        <Square value={1} />
+        <Square value={2} />
       </div>
       <div>
-        <button> Hello2 </button>
-        <button> Hello2 </button>
-        <button> Hello2 </button>
+        <Square value={3} />
+        <Square value={4} />
+        <Square value={5} />
       </div>
       <div>
-        <button>Hello 3</button>
-        <button>Hello 3</button>
-        <button>Hello 3</button>
+        <Square value={6} />
+        <Square value={7} />
+        <Square value={8} />
       </div>
     </div>
   );
