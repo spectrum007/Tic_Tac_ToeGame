@@ -7,8 +7,12 @@ const App = () => {
   const [board, SetBoard] = useState(Array(9).fill(null));
   const [isXnext, setIsXnext] = useState(false);
   const winner = calculateWinner(board);
+  const CheckAllboxexareFilled = board.every((element) => element !== null);
+
   const msg = winner
     ? `winner is ${winner}`
+    : CheckAllboxexareFilled
+    ? `Game Tie`
     : `Next player is ${isXnext ? "X" : "O"}`;
   const handleSquareClick = (position) => {
     if (board[position] || winner) {
@@ -32,7 +36,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <h1>TIC Tac Toe game </h1>
+      <h1>Tic Tac Toe game </h1>
       <h2> {msg}</h2>
       <Board board={board} handleSquareClick={handleSquareClick} />
     </div>
