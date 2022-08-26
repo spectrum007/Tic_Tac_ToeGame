@@ -184,3 +184,19 @@ button {
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+ style={{
+                  fontWeight: move === currentMove ? "bold" : "normal",
+                  color: move === currentMove ? "red" : "black",
+                }}
