@@ -5,20 +5,17 @@ import StatusMessage from "./Components/StatusMessage";
 import { calculateWinner } from "./helper";
 import "./Styles/root.scss";
 
+const NewGame = [{ board: Array(9).fill(null), isXnext: false }];
+
 const App = () => {
-  const [history, Sethistory] = useState([
-    {
-      board: Array(9).fill(null),
-      isXnext: false,
-    },
-  ]);
+  const [history, Sethistory] = useState(NewGame);
   const [currentMove, SetcurrentMove] = useState(0);
   const current = history[currentMove];
 
-  const winner = calculateWinner(current.board);
+  const { Winner, WinningSquares } = calculateWinner(current.board);
 
   const handleSquareClick = (position) => {
-    if (current.board[position] || winner) {
+    if (current.board[position] || Winner) {
       return;
     }
     Sethistory((prev) => {
@@ -37,11 +34,22 @@ const App = () => {
   const moveTo = (move) => {
     SetcurrentMove(move);
   };
+  const OnNewGame = () => {
+    Sethistory(NewGame);
+    SetcurrentMove(0);
+  };
   return (
     <div className="app">
       <h1>Tic Tac Toe game </h1>
-      <StatusMessage winner={winner} current={current} />
-      <Board board={current.board} handleSquareClick={handleSquareClick} />
+      <StatusMessage winner={Winner} current={current} />
+      <Board
+        board={current.board}
+        handleSquareClick={handleSquareClick}
+        winningSquares={WinningSquares}
+      />
+      <button type="button" onClick={OnNewGame}>
+        Start new Game
+      </button>
       <History history={history} moveTo={moveTo} currentMove={currentMove} />
     </div>
   );
